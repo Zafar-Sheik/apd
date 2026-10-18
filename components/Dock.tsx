@@ -32,7 +32,10 @@ export default function Dock() {
   useEffect(() => {
     const onScroll = () => {
       const nearEnd = window.innerHeight + window.scrollY > document.body.scrollHeight - 200;
-      setShow(window.scrollY > window.innerHeight * 0.8 && !nearEnd);
+      // Stay out of the way while the car wash fills the screen.
+      const wash = document.querySelector(".wash__pin")?.getBoundingClientRect();
+      const washing = !!wash && wash.top <= 1 && wash.bottom >= window.innerHeight - 1;
+      setShow(window.scrollY > window.innerHeight * 0.8 && !nearEnd && !washing);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });

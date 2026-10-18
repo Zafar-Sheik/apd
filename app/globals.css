@@ -1006,14 +1006,15 @@ body {
 .wash {
   background: linear-gradient(180deg, var(--black), #160202 40%, var(--red-deep) 140%);
 }
+/* The pinned wash is exactly one screen tall; the car scales to whatever height is left. */
 .wash__pin {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 24px;
-  padding: 110px 0 40px;
+  gap: clamp(12px, 2.5vh, 24px);
+  padding: clamp(76px, 11vh, 110px) 0 clamp(16px, 3vh, 32px);
   overflow: hidden;
 }
 .wash__ambient span {
@@ -1043,7 +1044,7 @@ body {
   margin: 0;
 }
 .wash__title {
-  font-size: clamp(48px, 7vw, 120px);
+  font-size: clamp(38px, min(7vw, 9.5svh), 120px);
 }
 .wash__shine {
   --fill: 100%;
@@ -1069,9 +1070,20 @@ body {
 }
 .wash__stage {
   position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
   width: min(92vw, 1000px);
   margin: 0 auto;
-  padding: 20px 0 0;
+  container-type: size;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.wash__car,
+.wash__meter {
+  /* The car is 420×170; leave room below it for the meter. */
+  width: min(100cqw, calc((100cqh - 64px) * 2.47));
 }
 .wash__glow {
   position: absolute;
@@ -1126,7 +1138,7 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 28px;
+  margin-top: 24px;
   color: var(--grey);
 }
 .wash__meter b {
