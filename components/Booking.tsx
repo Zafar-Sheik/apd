@@ -99,9 +99,9 @@ export default function Booking() {
       // Clipboard may be blocked; the message is still visible to copy by hand.
     }
     gsap.fromTo(".book__send", { scale: 0.94 }, { scale: 1, duration: 0.6, ease: "elastic.out(1, 0.4)" });
-    const href = mode === "parcel" ? socials.parcelsInstagram.href : socials.washInstagram.href;
-    window.open(href, "_blank", "noopener");
   });
+
+  const dmHref = mode === "parcel" ? socials.parcelsInstagram.href : socials.washInstagram.href;
 
   return (
     <section ref={root} id="book" className={`book book--${mode}`}>
@@ -174,9 +174,9 @@ export default function Booking() {
             <pre>{message}</pre>
           </div>
 
-          <button type="button" className="btn btn--red book__send" onClick={send} data-cursor="DM">
+          <a href={dmHref} target="_blank" rel="noreferrer" className="btn btn--red book__send" onClick={send} data-cursor="DM">
             {copied ? "Copied — paste in DMs ✓" : "Copy & open Instagram"}
-          </button>
+          </a>
         </div>
       </div>
     </section>
