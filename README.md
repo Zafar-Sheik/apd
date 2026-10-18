@@ -12,17 +12,24 @@ npm run build && npm start
 STATIC_EXPORT=1 npm run build   # static site in ./out
 ```
 
+## Aceternity UI components
+
+Interactive pieces in `components/ui/` follow Aceternity UI (Tailwind CSS v4 + Motion + `cn`):
+Spotlight, Flip Words, Moving Border, Hover Border Gradient, Floating Dock, Card Hover Effect,
+3D Card, Infinite Moving Cards, Background Beams, Text Generate Effect and animated Tabs.
+The Aceternity registry couldn't be reached from the build environment, so they were written by hand
+in the same structure as the originals.
+
 ## What's on the page
 
-- Preloader with a parcel riding the progress bar
-- Kinetic hero ("Delivered. Detailed.") with a van and scooter driving in, pointer parallax and hopping letters
-- Scroll-velocity marquees
-- Two-crew services split (hover to expand)
-- Pinned horizontal "How it works" ride with a scooter that drives as you scroll
-- Fleet switcher: bike / van drive in and out
-- Scroll-to-wash car: a squeegee wipes the mud off as you scroll, foam follows your cursor
-- Wash packages with 3D tilt, booking builder that writes an Instagram DM for you
-- Social links and a footer whose letters lean toward the cursor
+- Short preloader, then a "We deliver. We wash." hero with a spotlight, flip words and a van and scooter driving in
+- Service cards for parcel delivery and the car wash, plus a moving strip of what we deliver
+- Pinned horizontal "How delivery works" section with a scooter that rides as you scroll
+- Bike / van switcher with animated tabs
+- Scroll-to-clean car wash, then 3D-tilt wash packages
+- "Why APD" hover grid
+- Booking form that writes an Instagram message: copy it, open Instagram, paste
+- Floating dock of quick links once you scroll past the hero
 
 ## Content to confirm
 

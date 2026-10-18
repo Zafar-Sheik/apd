@@ -5,7 +5,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Car, Scooter } from "./Art";
-import { deliveryServices } from "@/lib/brand";
+import { deliveryPoints, sendables, washPoints } from "@/lib/brand";
+import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,14 +30,6 @@ export default function Services() {
         ease: "power4.out",
         scrollTrigger: { trigger: ".panels", start: "top 85%" },
       });
-      gsap.from(".panel__list li", {
-        x: -30,
-        autoAlpha: 0,
-        stagger: 0.07,
-        duration: 0.7,
-        ease: "power3.out",
-        scrollTrigger: { trigger: ".panels", start: "top 60%" },
-      });
 
       // Each panel's art drifts with the pointer while hovered.
       gsap.utils.toArray<HTMLElement>(".panel").forEach((panel) => {
@@ -53,7 +46,11 @@ export default function Services() {
           ay(0);
         });
         panel.addEventListener("pointerenter", () => {
-          gsap.fromTo(panel.querySelectorAll(".wheel"), { transformOrigin: "50% 50%", rotate: 0 }, { rotate: 360, duration: 0.9, ease: "power2.out" });
+          gsap.fromTo(
+            panel.querySelectorAll(".wheel"),
+            { rotate: 0, transformOrigin: "50% 50%" },
+            { rotate: 360, duration: 0.9, ease: "power2.out" },
+          );
         });
       });
     },
@@ -65,65 +62,56 @@ export default function Services() {
       <div className="wrap services__head">
         <span className="mono eyebrow">What we do</span>
         <h2 className="h2">
-          <span className="reveal"><span>Two crews.</span></span>
-          <span className="reveal"><span className="red">One name.</span></span>
+          <span className="reveal"><span>Two services.</span></span>
+          <span className="reveal"><span className="red">One local team.</span></span>
         </h2>
       </div>
 
       <div className="panels wrap">
-        <article className="panel panel--black" data-cursor="Send">
-          <div className="panel__top">
-            <span className="mono">01 / Deliveries</span>
-            <span className="mono">@aboos_parcel_deliveries</span>
-          </div>
+        <article className="panel panel--black">
+          <span className="mono panel__top">Parcel delivery</span>
           <h3 className="panel__title">
-            Parcel
+            Send a
             <br />
-            Deliveries
+            parcel
           </h3>
-          <ul className="panel__list">
-            {deliveryServices.map((s) => (
-              <li key={s.title}>
-                <b>{s.title}</b>
-                <span>{s.copy}</span>
-              </li>
+          <p className="panel__lede">Collected from you and taken straight to the address.</p>
+          <ul className="panel__points">
+            {deliveryPoints.map((p) => (
+              <li key={p}>{p}</li>
             ))}
           </ul>
           <Scooter className="panel__art" />
-          <a href="#book" className="btn btn--red">
+          <a href="#book" className="btn btn--red" data-book="parcel">
             Send a parcel
           </a>
         </article>
 
-        <article className="panel panel--red" data-cursor="Wash">
-          <div className="panel__top">
-            <span className="mono">02 / Car wash</span>
-            <span className="mono">@apd_mobilecarwash</span>
-          </div>
+        <article className="panel panel--red">
+          <span className="mono panel__top">Mobile car wash</span>
           <h3 className="panel__title">
-            Mobile
+            Wash my
             <br />
-            Car Wash
+            car
           </h3>
-          <ul className="panel__list">
-            <li>
-              <b>We come to you</b>
-              <span>Home, office or wherever you&apos;re parked. You carry on with your day.</span>
-            </li>
-            <li>
-              <b>Inside & out</b>
-              <span>From a quick exterior shine to a full valet that makes it feel brand new.</span>
-            </li>
-            <li>
-              <b>Hand-finished</b>
-              <span>Washed, dried and detailed by hand — no brushes scratching your paint.</span>
-            </li>
+          <p className="panel__lede">We bring everything and wash your car where it&apos;s parked.</p>
+          <ul className="panel__points">
+            {washPoints.map((p) => (
+              <li key={p}>{p}</li>
+            ))}
           </ul>
           <Car className="panel__art" id="panel-car" />
-          <a href="#wash" className="btn btn--black">
-            Book a wash
+          <a href="#book" className="btn btn--black" data-book="wash">
+            Book a car wash
           </a>
         </article>
+      </div>
+
+      <div className="sendables">
+        <div className="wrap sendables__head">
+          <span className="mono eyebrow">What we deliver</span>
+        </div>
+        <InfiniteMovingCards items={sendables} speed="slow" />
       </div>
     </section>
   );

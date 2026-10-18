@@ -6,6 +6,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Scooter, Van } from "./Art";
 import { useLoaded } from "./useLoaded";
+import { Spotlight } from "./ui/spotlight";
+import { FlipWords } from "./ui/flip-words";
+import { MovingBorderButton } from "./ui/moving-border";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,7 +18,7 @@ function Chars({ text }: { text: string }) {
     <>
       {text.split("").map((c, i) => (
         <span className="ch" key={i}>
-          {c}
+          {c === " " ? "\u00a0" : c}
         </span>
       ))}
     </>
@@ -34,7 +38,6 @@ export default function Hero() {
       gsap.set(".hero__van", { xPercent: -330 });
 
       gsap.to(".hero__road", { backgroundPositionX: "-=240px", duration: 0.6, ease: "none", repeat: -1 });
-      gsap.to(".hero__badge svg", { rotate: 360, duration: 14, ease: "none", repeat: -1 });
 
       const tl = gsap.timeline({
         scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: 0.6 },
@@ -96,50 +99,38 @@ export default function Hero() {
 
   return (
     <section ref={root} id="top" className="hero">
+      {loaded && <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" fill="#e10600" />}
       <div className="hero__grid" aria-hidden="true" />
       <div className="hero__meta wrap">
-        <span className="mono">(01) Parcel deliveries</span>
-        <span className="mono hide-sm">Bikes · Vans · Buckets</span>
-        <span className="mono">(02) Mobile car wash</span>
+        <span className="mono">Parcel delivery</span>
+        <span className="mono hide-sm">Bikes · Vans · Car wash</span>
+        <span className="mono">Mobile car wash</span>
       </div>
 
-      <h1 className="hero__title" aria-label="Delivered. Detailed.">
+      <h1 className="hero__title" aria-label="We deliver. We wash.">
         <span className="hero__line" aria-hidden="true">
-          <Chars text="DELIVERED" />
+          <Chars text="WE DELIVER" />
           <span className="ch red">.</span>
         </span>
         <span className="hero__line hero__line--outline" aria-hidden="true">
-          <Chars text="DETAILED" />
+          <Chars text="WE WASH" />
           <span className="ch red solid">.</span>
         </span>
       </h1>
 
       <div className="hero__foot wrap">
         <p className="hero__lede">
-          Aboo&apos;s Parcel Deliveries gets your parcels across town by <b>bike</b> and <b>van</b> — and our
-          mobile car wash brings the <b>shine</b> straight to your driveway.
+          Parcels delivered by bike and van. A car wash that comes to{" "}
+          <FlipWords words={["your home.", "your office.", "you."]} className="font-bold text-white" />
         </p>
         <div className="hero__ctas">
-          <a href="#book" className="btn btn--red" data-cursor="Send">
+          <MovingBorderButton href="#book" duration={3500} data-cursor="Send" data-book="parcel">
             Send a parcel
-          </a>
-          <a href="#wash" className="btn btn--ghost" data-cursor="Wash">
-            Book a wash
-          </a>
+          </MovingBorderButton>
+          <HoverBorderGradient href="#book" data-cursor="Wash" data-book="wash">
+            Book a car wash
+          </HoverBorderGradient>
         </div>
-        <a href="#services" className="hero__badge" aria-label="Scroll to services" data-cursor="Go">
-          <svg viewBox="0 0 120 120">
-            <defs>
-              <path id="badge-circle" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1 -92 0" />
-            </defs>
-            <text>
-              <textPath href="#badge-circle" textLength="286" lengthAdjust="spacingAndGlyphs">
-                SEND IT • WASH IT • SEND IT • WASH IT •
-              </textPath>
-            </text>
-          </svg>
-          <span>↓</span>
-        </a>
       </div>
 
       <div className="hero__parallax" aria-hidden="true">

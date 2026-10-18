@@ -40,7 +40,7 @@ export default function Footer() {
     <footer ref={root} className="footer">
       <div className="wrap footer__top">
         <div>
-          <span className="mono eyebrow">Ready when you are</span>
+          <span className="mono eyebrow">Message us any time</span>
           <p className="footer__line">
             Parcels on the move.
             <br />
@@ -65,7 +65,7 @@ export default function Footer() {
       </div>
       <div className="wrap footer__bottom mono">
         <span>© {new Date().getFullYear()} Aboo&apos;s Parcel Deliveries</span>
-        <span>Bikes · Vans · Buckets</span>
+        <span>Parcel delivery · Mobile car wash</span>
       </div>
     </footer>
   );

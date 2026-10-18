@@ -77,7 +77,7 @@ export default function Journey() {
     <section ref={root} id="journey" className="journey">
       <div className="journey__pin">
         <div className="journey__head wrap">
-          <span className="mono eyebrow">How it works</span>
+          <span className="mono eyebrow">How delivery works</span>
           <ol className="journey__dots mono">
             {journey.map((s) => (
               <li key={s.n}>{s.n}</li>
@@ -92,7 +92,7 @@ export default function Journey() {
               <br />
               <span className="outline">to theirs.</span>
             </h2>
-            <p>Scroll to ride along →</p>
+            <p>Four simple steps. Scroll to follow →</p>
           </div>
           {journey.map((s) => (
             <article className="step" key={s.n}>

@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const rows = [
   { ...socials.parcelsInstagram, what: "Parcel deliveries" },
   { ...socials.washInstagram, what: "Mobile car wash" },
-  { ...socials.tiktok, what: "Behind the scenes" },
+  { ...socials.tiktok, what: "Videos" },
 ];
 
 export default function Socials() {
@@ -34,7 +34,7 @@ export default function Socials() {
   return (
     <section ref={root} className="socials">
       <div className="wrap">
-        <span className="mono eyebrow">Follow the ride</span>
+        <span className="mono eyebrow">Follow us</span>
         <div className="socials__list">
           {rows.map((r) => (
             <a key={r.href} href={r.href} target="_blank" rel="noreferrer" className="social" data-cursor="Follow">

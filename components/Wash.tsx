@@ -115,12 +115,11 @@ export default function Wash() {
             </span>
           </h2>
           <p className="wash__copy">
-            Keep scrolling to wash it. Wiggle your cursor over the car for foam. We bring the water, the gear
-            and the elbow grease — you just hand over the keys.
+            We bring the water and the gear, and wash your car where it&apos;s parked. Scroll to see it cleaned.
           </p>
         </div>
 
-        <div className="wash__stage" data-cursor="Foam">
+        <div className="wash__stage">
           <div className="wash__glow" aria-hidden="true" />
           <div className="wash__car">
             <Car id="wash-clean" />

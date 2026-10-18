@@ -9,9 +9,11 @@ import Journey from "@/components/Journey";
 import Fleet from "@/components/Fleet";
 import Wash from "@/components/Wash";
 import Packages from "@/components/Packages";
+import Reasons from "@/components/Reasons";
 import Booking from "@/components/Booking";
 import Socials from "@/components/Socials";
 import Footer from "@/components/Footer";
+import Dock from "@/components/Dock";
 
 export default function Home() {
   return (
@@ -22,17 +24,18 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Marquee items={["Bikes", "Vans", "Same-day", "Door to door", "Foam", "Shine", "We come to you"]} />
+        <Marquee items={["Bikes", "Vans", "Same-day", "Door to door", "Car wash", "We come to you"]} />
         <Services />
         <Journey />
         <Fleet />
         <Wash />
         <Packages />
-        <Marquee dark reverse items={["Book a drop", "Book a wash", "DM us", "Red", "Black", "White", "APD"]} />
+        <Reasons />
         <Booking />
         <Socials />
       </main>
       <Footer />
+      <Dock />
     </>
   );
 }

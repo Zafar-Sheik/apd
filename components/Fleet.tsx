@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Scooter, Van } from "./Art";
+import { Tabs } from "./ui/tabs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,21 +13,19 @@ const fleet = {
   bike: {
     name: "The Bike",
     kicker: "Two wheels",
-    blurb: "Slips through traffic and parks anywhere. Our go-to for anything that fits in the box.",
+    blurb: "Fast through traffic. Used for anything that fits in the box.",
     specs: [
-      ["Best for", "Documents, envelopes, small parcels"],
-      ["Superpower", "Beats the traffic"],
-      ["Ideal run", "Quick hops across town"],
+      ["Best for", "Documents and small parcels"],
+      ["Why", "Quickest across town"],
     ],
   },
   van: {
     name: "The Van",
     kicker: "Four wheels",
-    blurb: "Room for the big stuff. Bulk orders, bulky boxes and multi-drop routes in one go.",
+    blurb: "Room for big boxes, bulk orders and several stops in one trip.",
     specs: [
-      ["Best for", "Large boxes, bulk & multi-drop"],
-      ["Superpower", "Fits what bikes can't"],
-      ["Ideal run", "Business collections"],
+      ["Best for", "Large and bulk parcels"],
+      ["Why", "Carries what a bike can't"],
     ],
   },
 } as const;
@@ -83,24 +82,22 @@ export default function Fleet() {
         <div>
           <span className="mono eyebrow">The fleet</span>
           <h2 className="h2">
-            Pick your
+            Bike or
             <br />
-            <span className="red">ride.</span>
+            <span className="red">van?</span>
           </h2>
-          <div className="toggle" role="tablist" aria-label="Vehicle">
-            {(Object.keys(fleet) as Key[]).map((k) => (
-              <button
-                key={k}
-                role="tab"
-                aria-selected={active === k}
-                className={active === k ? "on" : ""}
-                onClick={() => swap(k)}
-              >
-                {k === "bike" ? "Bike" : "Van"}
-              </button>
-            ))}
-            <i className={`toggle__pill toggle__pill--${active}`} />
-          </div>
+          <p className="fleet__intro">We pick the right vehicle for your parcel. Tap to compare.</p>
+          <Tabs
+            className="fleet__tabs"
+            label="Vehicle"
+            layoutId="fleet-tab"
+            value={active}
+            onChange={swap}
+            tabs={[
+              { value: "bike", title: "Bike" },
+              { value: "van", title: "Van" },
+            ]}
+          />
           <div className="fleet__info">
             <span className="mono">{v.kicker}</span>
             <h3>{v.name}</h3>
@@ -116,7 +113,7 @@ export default function Fleet() {
           </div>
         </div>
 
-        <div className="fleet__stage" data-cursor={active === "bike" ? "Vroom" : "Honk"}>
+        <div className="fleet__stage">
           <span className="fleet__bigword" aria-hidden="true">
             {active === "bike" ? "BIKE" : "VAN"}
           </span>

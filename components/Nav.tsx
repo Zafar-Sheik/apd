@@ -4,13 +4,13 @@ import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { MovingBorderButton } from "./ui/moving-border";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const links = [
   { href: "#services", label: "Services" },
-  { href: "#journey", label: "How it works" },
-  { href: "#fleet", label: "Fleet" },
+  { href: "#journey", label: "How delivery works" },
   { href: "#wash", label: "Car wash" },
   { href: "#book", label: "Book" },
 ];
@@ -60,7 +60,7 @@ export default function Nav() {
       <header ref={root} className="nav">
         <a href="#top" className="nav__logo" aria-label="APD home">
           <b>APD</b>
-          <span className="mono">Parcels · Wash</span>
+          <span className="mono">Parcels · Car wash</span>
         </a>
         <nav className="nav__links" aria-label="Primary">
           {links.map((l) => (
@@ -69,9 +69,9 @@ export default function Nav() {
             </a>
           ))}
         </nav>
-        <a href="#book" className="btn btn--red btn--sm nav__cta">
+        <MovingBorderButton href="#book" containerClassName="nav__cta h-11" className="px-5 text-[13px]">
           Book now
-        </a>
+        </MovingBorderButton>
         <button
           className={`nav__burger ${open ? "is-open" : ""}`}
           aria-label="Menu"

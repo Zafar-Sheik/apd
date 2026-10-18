@@ -1,3 +1,5 @@
+// All site copy that is likely to change lives here.
+
 export const socials = {
   parcelsInstagram: {
     label: "Instagram",
@@ -16,47 +18,50 @@ export const socials = {
   },
 } as const;
 
-export const deliveryServices = [
-  {
-    title: "Bike courier",
-    copy: "Envelopes, documents and small parcels zipped across town on two wheels. Built for traffic, built for speed.",
-  },
-  {
-    title: "Van delivery",
-    copy: "Bigger boxes, bulk drops and multi-stop runs. When it won't fit on a bike, the van takes it.",
-  },
-  {
-    title: "Same-day runs",
-    copy: "Need it there today? Message us, we collect, we deliver. No call centres, no runaround.",
-  },
-  {
-    title: "Business drops",
-    copy: "Regular collections for shops, online sellers and offices. One local crew you actually know.",
-  },
+export const deliveryPoints = ["Bike for small parcels", "Van for big or bulk orders", "Same-day when you need it"];
+
+export const washPoints = ["We come to your home or work", "Inside, outside or both", "Washed and dried by hand"];
+
+export const sendables = [
+  { tag: "Bike", title: "Documents", copy: "Contracts, letters and anything that needs a signature." },
+  { tag: "Bike", title: "Small parcels", copy: "Online orders, gifts and things that fit in our box." },
+  { tag: "Van", title: "Large boxes", copy: "Too big for a bike? The van takes it." },
+  { tag: "Van", title: "Bulk orders", copy: "Several boxes or several stops in one trip." },
+  { tag: "Bike or van", title: "Shop orders", copy: "Regular pickups for shops and online sellers." },
+  { tag: "Bike or van", title: "Same-day", copy: "Message us early and it can arrive today." },
 ];
 
 export const washPackages = [
   {
     name: "Exterior",
-    tag: "Quick shine",
-    items: ["Hand wash & rinse", "Wheels & tyres", "Windows outside", "Tyre shine"],
+    tag: "Outside",
+    items: ["Hand wash and rinse", "Wheels and tyres", "Outside windows", "Tyre shine"],
   },
   {
     name: "Interior",
-    tag: "Fresh inside",
-    items: ["Full vacuum", "Dash & console wipe", "Windows inside", "Mats cleaned"],
+    tag: "Inside",
+    items: ["Full vacuum", "Dashboard and console", "Inside windows", "Mats cleaned"],
   },
   {
     name: "Full valet",
-    tag: "The works",
+    tag: "Most popular",
     featured: true,
-    items: ["Everything in Exterior", "Everything in Interior", "Door shuts & trims", "Finishing detail"],
+    items: ["Everything in Exterior", "Everything in Interior", "Door frames and trims", "Final detailing"],
   },
 ];
 
 export const journey = [
-  { n: "01", title: "Message us", copy: "DM on Instagram or TikTok with your pickup, drop-off and what you're sending." },
-  { n: "02", title: "We collect", copy: "A rider or van heads straight to you. Bike for small stuff, van for the big stuff." },
-  { n: "03", title: "On the road", copy: "Your parcel goes direct. No depots, no sorting centres, no detours." },
-  { n: "04", title: "Delivered", copy: "Handed over at the door, and we let you know the moment it lands." },
+  { n: "01", title: "Message us", copy: "Tell us where to collect, where it's going and what it is." },
+  { n: "02", title: "We collect", copy: "A bike or van comes to you." },
+  { n: "03", title: "On the way", copy: "Straight to the address. No depots in between." },
+  { n: "04", title: "Delivered", copy: "Handed over, and we let you know." },
+];
+
+export const reasons = [
+  { title: "Local team", description: "You deal with the same people every time." },
+  { title: "Direct delivery", description: "Your parcel goes straight from A to B." },
+  { title: "Right vehicle", description: "Bike for speed, van for size." },
+  { title: "We come to you", description: "Car washed where it's parked. No queues." },
+  { title: "Easy booking", description: "Send one message on Instagram. That's it." },
+  { title: "Clear updates", description: "We tell you when it's collected and delivered." },
 ];

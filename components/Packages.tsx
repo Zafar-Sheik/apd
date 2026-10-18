@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { washPackages } from "@/lib/brand";
+import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,30 +14,13 @@ export default function Packages() {
 
   useGSAP(
     () => {
-      gsap.from(".pkg", {
-        y: 140,
-        rotate: (i) => (i - 1) * 6,
+      gsap.from(".pkg-wrap", {
+        y: 120,
         autoAlpha: 0,
         stagger: 0.12,
-        duration: 1.2,
+        duration: 1.1,
         ease: "power4.out",
         scrollTrigger: { trigger: ".pkgs", start: "top 80%" },
-      });
-
-      gsap.utils.toArray<HTMLElement>(".pkg").forEach((card) => {
-        const rx = gsap.quickTo(card, "rotationX", { duration: 0.6, ease: "power3" });
-        const ry = gsap.quickTo(card, "rotationY", { duration: 0.6, ease: "power3" });
-        card.addEventListener("pointermove", (e) => {
-          const r = card.getBoundingClientRect();
-          ry(((e.clientX - r.left) / r.width - 0.5) * 14);
-          rx(((e.clientY - r.top) / r.height - 0.5) * -14);
-          card.style.setProperty("--mx", `${e.clientX - r.left}px`);
-          card.style.setProperty("--my", `${e.clientY - r.top}px`);
-        });
-        card.addEventListener("pointerleave", () => {
-          rx(0);
-          ry(0);
-        });
       });
     },
     { scope: root },
@@ -46,29 +30,38 @@ export default function Packages() {
     <section ref={root} className="packages">
       <div className="wrap">
         <div className="packages__head">
-          <span className="mono eyebrow">Wash packages</span>
-          <h2 className="h2">
-            Choose your <span className="red">clean.</span>
-          </h2>
+          <span className="mono eyebrow">Car wash packages</span>
+          <h2 className="h2">Pick a package</h2>
+          <p className="packages__sub">Not sure which one? Message us and we&apos;ll help you choose.</p>
         </div>
         <div className="pkgs">
-          {washPackages.map((p, i) => (
-            <article key={p.name} className={`pkg ${"featured" in p && p.featured ? "pkg--featured" : ""}`}>
-              <div className="pkg__top">
-                <span className="mono">0{i + 1}</span>
-                <span className="pkg__tag mono">{p.tag}</span>
+          {washPackages.map((p) => {
+            const featured = "featured" in p && p.featured;
+            return (
+              <div className="pkg-wrap" key={p.name}>
+                <CardContainer className="w-full" containerClassName="w-full">
+                  <CardBody className={`pkg ${featured ? "pkg--featured" : ""}`}>
+                    <CardItem translateZ={30} className="pkg__tag mono">
+                      {p.tag}
+                    </CardItem>
+                    <CardItem as="h3" translateZ={60}>
+                      {p.name}
+                    </CardItem>
+                    <CardItem as="ul" translateZ={40} className="w-full">
+                      {p.items.map((it) => (
+                        <li key={it}>{it}</li>
+                      ))}
+                    </CardItem>
+                    <CardItem translateZ={50} className="pkg__cta-wrap w-full">
+                      <a href="#book" className="pkg__cta" data-book="wash" data-package={p.name}>
+                        Book {p.name.toLowerCase()} <span>→</span>
+                      </a>
+                    </CardItem>
+                  </CardBody>
+                </CardContainer>
               </div>
-              <h3>{p.name}</h3>
-              <ul>
-                {p.items.map((it) => (
-                  <li key={it}>{it}</li>
-                ))}
-              </ul>
-              <a href="#book" className="pkg__cta">
-                Get a quote <span>→</span>
-              </a>
-            </article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

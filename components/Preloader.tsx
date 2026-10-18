@@ -34,17 +34,17 @@ export default function Preloader() {
             gsap.set(root.current, { display: "none" });
           },
         })
-        .from(".pre__word span", { yPercent: 110, stagger: 0.06, duration: 0.7, ease: "power4.out" })
+        .from(".pre__word span", { yPercent: 110, stagger: 0.05, duration: 0.5, ease: "power4.out" })
         .to(counter, {
           v: 100,
-          duration: 1.6,
+          duration: 0.9,
           ease: "power2.inOut",
           onUpdate: () => {
             num.textContent = String(Math.round(counter.v)).padStart(3, "0");
           },
         }, 0.2)
-        .to(".pre__bar i", { scaleX: 1, duration: 1.6, ease: "power2.inOut" }, 0.2)
-        .to(".pre__parcel", { x: () => root.current!.querySelector<HTMLElement>(".pre__bar")!.clientWidth - 40, rotate: 360, duration: 1.6, ease: "power2.inOut" }, 0.2)
+        .to(".pre__bar i", { scaleX: 1, duration: 0.9, ease: "power2.inOut" }, 0.2)
+        .to(".pre__parcel", { x: () => root.current!.querySelector<HTMLElement>(".pre__bar")!.clientWidth - 40, rotate: 360, duration: 0.9, ease: "power2.inOut" }, 0.2)
         .to(".pre__inner", { yPercent: -30, autoAlpha: 0, duration: 0.6, ease: "power3.in" })
         .to(".pre__panel", { yPercent: -100, stagger: 0.1, duration: 0.9, ease: "expo.inOut" }, "-=0.2")
         .add(done, "-=0.6");
